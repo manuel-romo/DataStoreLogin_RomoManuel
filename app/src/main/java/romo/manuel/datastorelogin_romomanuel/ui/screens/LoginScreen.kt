@@ -22,9 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import romo.manuel.datastorelogin_romomanuel.data.DataStoreManager
+import romo.manuel.datastorelogin_romomanuel.viewmodel.AuthViewModel
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    viewModel: AuthViewModel
+){
 
     val context = LocalContext.current
     var user by remember { mutableStateOf("") }
@@ -65,7 +70,7 @@ fun LoginScreen(){
                 if(user.isBlank() || user.isBlank()){
                     Toast.makeText(context, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
                 } else{
-
+                    viewModel.login(user, pass)
                 }
 
 
@@ -79,6 +84,6 @@ fun LoginScreen(){
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview(){
-    LoginScreen()
+    LoginScreen(AuthViewModel(DataStoreManager(LocalContext.current)))
 
 }

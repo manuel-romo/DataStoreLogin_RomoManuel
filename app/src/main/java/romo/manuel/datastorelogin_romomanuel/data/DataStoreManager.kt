@@ -3,6 +3,7 @@ package romo.manuel.datastorelogin_romomanuel.data
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -16,6 +17,7 @@ class DataStoreManager(
     // Singleton, enfocado en atributos, no en instancias
     companion object {
         val IS_LOGGED_IN = booleanPreferencesKey("is_logged_in")
+        val USERNAME = stringPreferencesKey("username")
     }
 
     // Esto sera el "estado".
@@ -25,6 +27,13 @@ class DataStoreManager(
     suspend fun logout(){
         context.dataStore.edit {
             it.clear()
+        }
+    }
+
+    suspend fun saveSession(username: String){
+        context.dataStore.edit {
+            it[IS_LOGGED_IN] = true
+            it[USERNAME] = username
         }
     }
 

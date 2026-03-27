@@ -11,7 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import romo.manuel.datastorelogin_romomanuel.data.DataStoreManager
+import romo.manuel.datastorelogin_romomanuel.ui.screens.MainScreen
 import romo.manuel.datastorelogin_romomanuel.ui.theme.DataStoreLogin_RomoManuelTheme
+import romo.manuel.datastorelogin_romomanuel.viewmodel.AuthViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +22,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DataStoreLogin_RomoManuelTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // En este caso, "this" es el context.
+                MainScreen(viewModel = AuthViewModel(DataStoreManager(this)))
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DataStoreLogin_RomoManuelTheme {
-        Greeting("Android")
     }
 }
