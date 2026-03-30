@@ -16,6 +16,10 @@ import romo.manuel.datastorelogin_romomanuel.ui.screens.MainScreen
 import romo.manuel.datastorelogin_romomanuel.ui.theme.DataStoreLogin_RomoManuelTheme
 import romo.manuel.datastorelogin_romomanuel.viewmodel.AuthViewModel
 
+/**
+ * Manuel Romo López
+ * ID: 00000253080
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

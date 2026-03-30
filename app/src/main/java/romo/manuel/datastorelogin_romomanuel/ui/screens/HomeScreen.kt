@@ -16,6 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * Manuel Romo López
+ * ID: 00000253080
+ */
 @Composable
 fun HomeScreen(
     onLogout: () -> Unit

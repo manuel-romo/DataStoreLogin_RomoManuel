@@ -8,19 +8,23 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * Manuel Romo López
+ * ID: 00000253080
+ */
 class DataStoreManager(
     private val context: Context
 ) {
 
     private val Context.dataStore by preferencesDataStore("session_prefs")
 
-    // Singleton, enfocado en atributos, no en instancias
+    // Singleton, enfocado en atributos, no en instancias.
     companion object {
         val IS_LOGGED_IN = booleanPreferencesKey("is_logged_in")
         val USERNAME = stringPreferencesKey("username")
     }
 
-    // Esto sera el "estado".
+    // Esto es el estado de la sesión.
     val isLoggedInFlow: Flow<Boolean> = context.dataStore.data
         .map { it[IS_LOGGED_IN] ?: false}
 
@@ -37,7 +41,7 @@ class DataStoreManager(
         }
     }
 
-    // A grandes rasgos, simplificando, Corrutinas son métodos asíncronos que no se "observan".
+    // Simplificando, Corrutinas son métodos asíncronos, que no se observan.
     suspend fun saveLogin(isLoggedIn: Boolean){
         context.dataStore.edit {
             it[IS_LOGGED_IN] = isLoggedIn
